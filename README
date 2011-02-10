@@ -1,0 +1,6 @@
+android-sshd is a open source SSH server for andoird phones.
+
+It is based on Apache SSHD (http://mina.apache.org/sshd/). Most parts of android-sshd is written in Java, except those that deals with POSIX pseudo-terminal.
+
+Here is just a prototype, with almost no GUI :) I will improve it.
+
