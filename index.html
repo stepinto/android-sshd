@@ -1,80 +1,45 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Android SSH Server</title>
+  </head>
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>stepinto/android-sshd @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #1a6f3f;
-		  font-family: "Helvetica,Arial,FreeSans";
-  		color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #e590c0; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #e590c0; }
-    h3 { text-align: center; color: #e590c0; }
-    a { color: #e590c0; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
-
-<body>
-  <a href="http://github.com/stepinto/android-sshd"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/stepinto/android-sshd/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/stepinto/android-sshd/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/stepinto/android-sshd">android-sshd</a>
-      <span class="small">by <a href="http://github.com/stepinto">stepinto</a></span></h1>
-
-    <div class="description">
-      A SSH server for android phones written in Java!
-    </div>
-
-    <h2>Authors</h2>
-<p>Chao Shi (stepinto@live.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Chao Shi (stepinto@live.com)<br/>      </p>
-
-
-    <h2>Download</h2>
+  <body>
+    <h1>Android SSH Server</h1>
     <p>
-      You can download this project in either
-      <a href="http://github.com/stepinto/android-sshd/zipball/master">zip</a> or
-      <a href="http://github.com/stepinto/android-sshd/tarball/master">tar</a> formats.
+      It is a open-source implementation of SSH server for android phones. Majority part of it is written in Java, except for a small portion in C that interacts with POSIX pseudo terminal. It is based on <a href="http://mina.apache.org/sshd/">Apache SSHD</a>.
     </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/stepinto/android-sshd</pre>
+    <p>
+      The SSH server would work for unrooted phones. However, since the shell connected to it have the same permission as the app does, it may not able to perform restricted operations, such as mounting devices.
+    </p>
+    <p>The latest version is 0.0.1. It is a working prototype that listens at 8022. Pre-defined username and password are both "test". Known issues are:
+      <ul>
+        <li>The RSA keys are always generated at start. Users may have to clear their <span>~/.ssh/known_hosts</span>.</li>
+        <li><span>ssh</span> hangs at exit.</li>
+      </ul>
+      These issues will be fixed in the next release.
     </p>
 
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/stepinto/android-sshd">stepinto/android-sshd</a>
-    </div>
+    <h2>Releases</h2>
+    <p>
+      <table>
+        <tbody>
+          <tr>
+            <td>0.0.1</td>
+            <td><a href="releases/android-sshd-0.0.1.apk">apk</td>
+            <td><a href="https://github.com/stepinto/android-sshd/tree/0.0.1">source</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </p>
 
-  </div>
-
-  
-</body>
+    <h2>Contact</h2>
+    <p>
+      If you have any questions, bugs or suggestions, please feel free to email <a href="mailto:stepinto@live.com">me</a>.
+    </p>
+  </body>
 </html>
+
+<!--
+  vim: ts=2 sw=2 et
+-->
+
