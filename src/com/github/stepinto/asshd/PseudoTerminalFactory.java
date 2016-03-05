@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.sshd.common.Factory;
 import org.apache.sshd.server.Command;
@@ -38,14 +39,17 @@ public class PseudoTerminalFactory implements Factory<Command> {
 		private InputStream stderr;
 		private FileDescriptor fd;
 		private int pid;
+		private AtomicBoolean destroyed = new AtomicBoolean(false);
 
 		@Override
 		public void destroy() {
+			android.os.Process.killProcess(pid);
+			destroyed.set(true);
 		}
 
 		@Override
 		public int exitValue() {
-			return 0;
+			return Exec.waitFor(pid);
 		}
 
 		@Override
@@ -65,17 +69,15 @@ public class PseudoTerminalFactory implements Factory<Command> {
 
 		@Override
 		public boolean isAlive() {
-			// TODO: Call native kill() to determine if the child
-			// process is alive
-			return true;
+			return !destroyed.get();
 		}
 
 		@Override
 		public void start(Map<String, String> env) throws IOException {
-			int[] pidOut = new int [1];
+			int[] pidOut = new int[1];
 			fd = Exec.createSubprocess(cmd, args[0], null, pidOut);
 			pid = pidOut[0];
-			
+
 			stdin = new FileOutputStream(fd);
 			stdout = new FileInputStream(fd);
 			stderr = new FileInputStream("/dev/null");
